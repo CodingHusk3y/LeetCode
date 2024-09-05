@@ -8,13 +8,13 @@ class Solution:
             return []
 
         res = [1] * n
-        remain_sum = missing_total - n
+        missing_total -= n
 
         for i in range(n):
-            adding = min(remain_sum, 5)
+            adding = min(missing_total, 5)
             res[i] += adding
-            remain_sum -= adding
-            if remain_sum == 0:
+            missing_total -= adding
+            if missing_total == 0:
                 break
 
         return res
