@@ -4,7 +4,7 @@ class Solution:
         k = len(rolls) + n
         missing_total = mean * k - curr_total 
 
-        if missing_total < 1 * n or missing_total > 6 * n:
+        if missing_total not in range(n, n * 6 + 1):
             return []
 
         res = [1] * n
