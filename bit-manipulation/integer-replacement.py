@@ -11,7 +11,10 @@ class Solution:
             elif n == 3:
                 n -= 1
             else:
-                n -= 1
+                if (n-1) % 2 == 0:
+                    n -= 1
+                else:
+                    n += 1 
 
             level += 1
 
