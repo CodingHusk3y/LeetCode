@@ -1,17 +1,19 @@
 class Solution:
-    def __init__(self):
-        self.memo = {}
-
-    def recurse(self, n):
-        if n == 1:
-            return 0
-        if n in self.memo:
-            return self.memo[n]
-        if n % 2 == 0:
-            self.memo[n] = 1 + self.recurse(n // 2)
-        else:
-            self.memo[n] = 1 + min(self.recurse(n + 1), self.recurse(n - 1))
-        return self.memo[n]
-
     def integerReplacement(self, n: int) -> int:
-        return self.recurse(n)
+        if n <= 1:
+            return 0
+        
+        level = 0
+
+        while n != 1:
+            if n % 2 == 0:
+                n /= 2
+            elif n == 3:
+                n -= 1
+            else:
+                n -= 1
+
+            level += 1
+
+        return level
+        
