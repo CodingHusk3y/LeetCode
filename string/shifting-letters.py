@@ -1,11 +1,10 @@
 class Solution:
     def shiftingLetters(self, s: str, shifts: List[int]) -> str:
-        Counter = len(s)
-        new_str = ""
+        shift_sum = sum(shifts)
+        ans = ""
+        for i in range(len(shifts)):
+            shift_count = shift_sum % 26
+            ans = ans + chr(97+shift_count+(ord(s[i])%97))
+            shift_sum -= shifts[i]
+        return ans
 
-        for i in range(len(s)):
-            sum_count  = sum(shifts)
-            char = chr((ord(s[i]) - ord('a') + sum_count) % 26 + ord('a'))
-            new_str = new_str + char
-	    
-        return new_str
