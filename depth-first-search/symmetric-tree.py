@@ -9,12 +9,12 @@ class Solution:
         if not root:
             return True
 
-        return self.SymetricRecur(root.left, root.right)
+        def dfs(left, right):
+            if not left and not right:
+                return True
+            if not left or not right:
+                return False
 
-    def SymetricRecur(self, left, right):
-        if left is None and right is None:
-            return True 
-        if left is None or right is None or left.val != right.val:
-            return False
+            return (left.val == right.val) and dfs(left.left, right.right) and dfs(left.right, right.left)
 
-        return self.SymetricRecur(left.left, right.right) and self.SymetricRecur(left.right, right.left)
+        return dfs(root.left, root.right)
