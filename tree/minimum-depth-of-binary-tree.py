@@ -17,4 +17,7 @@ class Solution:
 
             return 1 + min(left_depth, right_depth)
 
+        if not root:
+            return 0
+
         return dfs(root)
