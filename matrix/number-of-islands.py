@@ -4,28 +4,32 @@ class Solution:
             return 0
 
         visited = set()
+        directions = [(0,1), (1,0), (-1,0), (0,-1)]
+        island = 0
         rows, cols = len(grid), len(grid[0])
-        islands = 0
 
         def bfs(r, c):
-            que = collections.deque()
-            directions = [(0, 1), (1, 0), (-1, 0), (0, -1)]
+            que = deque()
             visited.add((r, c))
             que.append((r, c))
-            while que:
-                row, col = que.popleft()
-                for dr, dc in directions:
-                    r, c = row + dr, col + dc
-                    if r in range(rows) and c in range(cols) and grid[r][c] == '1' and (r, c) not in visited:
-                        que.append((r, c))
-                        visited.add((r, c))
 
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == '1' and (r, c) not in visited:
-                    bfs(r, c)
-                    islands += 1
+            while que:
+                (row, col) = que.popleft()
+                
+                for dr, dc in directions:
+                    nr, nc = row + dr, col + dc
+                    if nr in range(rows) and nc in range(cols) and grid[nr][nc] == "1" and (nr, nc) not in visited:
+                        que.append((nr, nc))
+                        visited.add((nr, nc))
         
-        return islands
+        for row in range(rows):
+            for col in range(cols):
+                if grid[row][col] == "1" and (row, col) not in visited:
+                    bfs(row, col)
+                    island += 1
+
+        return island
+        
+
 
 
