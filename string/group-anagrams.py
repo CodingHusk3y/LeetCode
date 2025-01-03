@@ -3,11 +3,8 @@ class Solution:
         groups = defaultdict(list)
 
         for string in strs:
-            sorted_string = ''.join(sorted(string))
+            current_str = ''.join(sorted(string))
 
-            if sorted_string not in groups:
-                groups[sorted_string] = []
+            groups[current_str].append(string)
 
-            groups[sorted_string].append(string)
-
-        return groups.values()
+        return list(groups.values())
