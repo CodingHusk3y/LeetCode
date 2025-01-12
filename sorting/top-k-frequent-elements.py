@@ -1,14 +1,5 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freq = {}
+        elements = Counter(nums)
 
-        for num in nums:
-            if num in freq:
-                freq[num] += 1
-            else:
-                freq[num] = 1
-
-        sorted_desc = dict(sorted(freq.items(), key=lambda item: item[1], reverse=True))
-        top_k = list(sorted_desc.keys())[:k]
-
-        return top_k
+        return [item[0] for item in elements.most_common(k)]
