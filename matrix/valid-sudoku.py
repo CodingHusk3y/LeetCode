@@ -25,7 +25,7 @@ class Solution:
             for k in range(3):
                 for f in range(3):
                     row = (square // 3) * 3 + k
-                    col = (square // 3) * 3 + f
+                    col = (square % 3) * 3 + f
 
                     if board[row][col] == ".":
                         continue
