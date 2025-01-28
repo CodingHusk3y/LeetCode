@@ -15,7 +15,7 @@ class Solution:
             for dr, dc in directions:
                 nr, nc = row + dr, col + dc
 
-                if nr in range(len(graph)) and nc in range(len(graph)):
+                if nr in range(len(graph)) and nc in range(len(graph[0])):
                     curr += dfs(graph, (nr, nc), visited)
 
             return curr
