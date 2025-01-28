@@ -22,7 +22,7 @@ class Solution:
 
         for row in range(len(grid)):
             for col  in range(len(grid[0])):
-                if grid[col][row] > 0:
+                if grid[row][col] > 0:
                     visited = set()
                     maxFish = max(maxFish, dfs(grid, (row, col), visited))
 
