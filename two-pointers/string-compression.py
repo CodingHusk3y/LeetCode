@@ -1,21 +1,28 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
-        ptr1 = 0
-        ptr2 = ptr1 + 1
-        count = 1
-        for ptr2 in range(1, len(chars) + 1):
-            if ptr2 < len(chars) and chars[ptr1] == chars[ptr2]:
+        if not chars:
+            return 0
+
+        n = len(chars)
+        write = 0
+        read = 0
+
+        while read < n:
+            key = chars[read]
+            count = 0
+
+            while read < n and chars[read] == key:
                 count += 1
-            else:
-                if count > 1:
-                    count_str = str(count)
-                    chars[ptr1 + 1:ptr1 + 1 + len(count_str)] = count_str
-                    ptr1 += len(count_str)
-                ptr1 += 1
-                if ptr2 < len(chars):  # Update character
-                    chars[ptr1] = chars[ptr2]
-                count = 1 
-        
-        return len(chars[:ptr1])
+                read += 1
 
+            chars[write] = key
+            write += 1
 
+            if count > 1:
+                for digit in str(count):
+
+                    chars[write] = digit
+                    write += 1
+
+        return write
+            
