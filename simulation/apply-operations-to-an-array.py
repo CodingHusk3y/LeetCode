@@ -1,6 +1,6 @@
 class Solution:
     def applyOperations(self, nums: List[int]) -> List[int]:
-        for ptr1 in range(len(nums) - 2):
+        for ptr1 in range(len(nums) - 1):
             ptr2 = ptr1 + 1
             
             if nums[ptr1] == nums[ptr2]:
