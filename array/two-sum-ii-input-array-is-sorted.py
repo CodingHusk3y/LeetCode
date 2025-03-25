@@ -4,13 +4,14 @@ class Solution:
         ptr2 = len(numbers) - 1
 
         while ptr1 < ptr2:
-            curr_sum = numbers[ptr1] + numbers[ptr2]
-            if numbers[ptr1] + numbers[ptr2] > target:
-                ptr2 -= 1
-            elif curr_sum < target:
+            total = numbers[ptr1] + numbers[ptr2]
+
+            if total == target:
+                return [ptr1 + 1, ptr2 + 1]
+            elif total < target:
                 ptr1 += 1
             else:
-                return [ptr1 + 1, ptr2 + 1]
+                ptr2 -= 1
 
         
             
