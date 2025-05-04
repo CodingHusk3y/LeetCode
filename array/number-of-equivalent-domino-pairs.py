@@ -6,5 +6,5 @@ class Solution:
             key = tuple(sorted(pair))
             counting[key] += 1
 
-        return sum(count * (count - 1)) // 2 for count in counting.values()
+        return sum(count * (count - 1) // 2 for count in counting.values())
 
