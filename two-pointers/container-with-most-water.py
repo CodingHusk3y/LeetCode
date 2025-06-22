@@ -1,16 +1,18 @@
 class Solution:
     def maxArea(self, height: List[int]) -> int:
+        max_vol = 0
         ptr1 = 0
         ptr2 = len(height) - 1
-        max_water = 0
 
         while ptr1 < ptr2:
-            current = min(height[ptr1], height[ptr2]) * (ptr2 - ptr1)
-            max_water = max(max_water, current)
+            curr_vol = min(height[ptr1], height[ptr2]) * (ptr2 - ptr1)
+            max_vol = max(curr_vol, max_vol)
 
             if height[ptr1] < height[ptr2]:
                 ptr1 += 1
             else:
                 ptr2 -= 1
 
-        return max_water
+        return max_vol
+
+       
