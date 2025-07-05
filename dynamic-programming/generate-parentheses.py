@@ -5,19 +5,18 @@ class Solution:
 
         def backtrack(openN, closeN):
             if openN == closeN == n:
-                ans.append(''.join(stk))
+                ans.append("".join(stk))
                 return
 
-            if openN < n:
-                stk.append('(')
+            if openN <= n:
+                stk.append("(")
                 backtrack(openN + 1, closeN)
                 stk.pop()
 
-            if openN > closeN:
-                stk.append(')')
+            if closeN < openN:
+                stk.append(")")
                 backtrack(openN, closeN + 1)
                 stk.pop()
 
-        backtrack(0,0)
-
+        backtrack(0, 0)
         return ans
