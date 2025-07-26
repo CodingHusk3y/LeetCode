@@ -1,34 +1,19 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        if target < matrix[0][0] or target > matrix[-1][-1]:
-            return False
+        m, n = len(matrix), len(matrix[0])
+        ptr1, ptr2 = 0, m * n - 1
 
-        Row = self.FindRow(matrix, target)
-        left = 0
-        right = len(matrix[Row]) - 1
-        while left <= right:
-            mid = (left + right) // 2
-            if matrix[Row][mid] == target:
+        while ptr1 <= ptr2:
+            mid = (ptr1 + ptr2) // 2
+            row = mid // n
+            col = mid % n
+            mid_value = matrix[row][col]
+
+            if mid_value == target:
                 return True
-            elif matrix[Row][mid] < target:
-                left = mid + 1
+            elif mid_value < target:
+                ptr1 = mid + 1
             else:
-                right = mid - 1
+                ptr2 = mid - 1
 
         return False
-
-    def FindRow(self, matrix, target):
-        left = 0
-        right = len(matrix) - 1
-        while left <= right:
-            row = (left + right) // 2
-            if matrix[row][0] <= target <= matrix[row][-1]:
-                return row
-            if matrix[row][0] < target:
-                left = row + 1
-            elif matrix[row][-1] > target:
-                right = row - 1
-
-        return row
-
-            
