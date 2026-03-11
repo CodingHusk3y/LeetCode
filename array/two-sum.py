@@ -1,12 +1,16 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        num_to_index = {}
+        num_pos = [(num, pos) for pos, num in enumerate(nums)]
 
-        for i, num in enumerate(nums):
-            compliment = target - num
+        num_pos.sort()
 
-            if compliment in num_to_index:
-                return [num_to_index[compliment], i]
+        ptr1 = 0
+        ptr2 = len(nums) - 1
 
-            num_to_index[num] = i
-    
+        while ptr1 < ptr2:
+            if num_pos[ptr1][0] + num_pos[ptr2][0] < target:
+                ptr1 += 1
+            elif num_pos[ptr1][0] + num_pos[ptr2][0] > target:
+                ptr2 -= 1
+            else:
+                return [num_pos[ptr1][1], num_pos[ptr2][1]]
