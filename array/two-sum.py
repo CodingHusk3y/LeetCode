@@ -1,16 +1,19 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        num_pos = [(num, pos) for pos, num in enumerate(nums)]
+        # 2 + 7 = 9
+        # 7 = 9 - 2
+        # 7: 0 -> 7 -> [1][0]
+        # initial a hashmap
+        # go through every number in array
+        # at each number checking if there is already another number adding togother to make to the target
+        # if not we logging the comliment and the position into the map
 
-        num_pos.sort()
+        tracking = {}
 
-        ptr1 = 0
-        ptr2 = len(nums) - 1
-
-        while ptr1 < ptr2:
-            if num_pos[ptr1][0] + num_pos[ptr2][0] < target:
-                ptr1 += 1
-            elif num_pos[ptr1][0] + num_pos[ptr2][0] > target:
-                ptr2 -= 1
+        for i in range(len(nums)):
+            if nums[i] in tracking:
+                return [i, tracking[nums[i]]]
             else:
-                return [num_pos[ptr1][1], num_pos[ptr2][1]]
+                tracking[target - nums[i]] = i
+
+            
