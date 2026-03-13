@@ -1,10 +1,8 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        groups = defaultdict(list)
+        group = defaultdict(list)
 
         for string in strs:
-            current_str = ''.join(sorted(string))
+            group[tuple(sorted(string))].append(string)
 
-            groups[current_str].append(string)
-
-        return list(groups.values())
+        return [anagrams for anagrams in group.values()]
